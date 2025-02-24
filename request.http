@@ -1,32 +1,31 @@
-GET http://localhost:3000/api/short-links
+GET http://localhost:3000/api/short-links/67bbf397b500310df22a5bfa
 
 ###
 POST http://localhost:3000/api/short-links
 Content-Type: application/json
 
 {
-  "title": "위키피디아 Next.js",
-  "url": "https://en.wikipedia.org/wiki/Next.js"
+  "title": "codeit",
+  "url": "https://codeit.kr"
 }
 
 ###
 PATCH http://localhost:3000/api/short-links
 
 ###
-GET http://localhost:3000/api/short-links/abc
+GET http://localhost:3000/api/short-links/
 
 
 ###
-PATCH http://localhost:3000/api/short-links/123
+PATCH http://localhost:3000/api/short-links/67bbf397b500310df22a5bfa
 Content-Type: application/json
 
 {
-    "title": "위키디피아js",
-    "url": "https://en.widl.js"
+    "title": "codeit-edit-2"
 }
 
 ###
-DELETE http://localhost:3000/api/short-links/123
+DELETE http://localhost:3000/api/short-links/67bbf492b500310df22a5bff
 
 ###
 POST http://localhost:3000/api/short-links/123

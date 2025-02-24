@@ -1,26 +1,20 @@
-export default function handler(request, response) {
+import dbConnect from "@/db/dbConnect";
+import ShortLink from "@/db/models/ShortLink";
+import mongoose from "mongoose";
+
+export default async function handler(request, response) {
+    await dbConnect();
+    // console.log(mongoose.connection.readyState);
+    console.log(Object.keys(ShortLink.schema.paths));
+
     switch (request.method) {
         case "POST":
-            response.status(201).send(request.body);
+            const newShorkLink = await ShortLink.create(request.body); // 비동기작업이기때문에 await로 기다려주기
+            response.status(201).send(newShorkLink);
             break;
         case "GET":
-            response.send([
-                {
-                    "id": "abc",
-                    "title": "위키피디아 Next.js",
-                    "url": "https://en.wikipedia.org/wiki/Next.js"
-                },
-                {
-                    "id": "def",
-                    "title": "코드잇 자유게시판",
-                    "url": "https://codeit.kr/community/general"
-                },
-                {
-                    "id": "ghi",
-                    "title": "코드잇 질문답변",
-                    "url": "https://www.codeit.kr/community/questions"
-                }
-            ])
+            const shorkLinks = await ShortLink.find()
+            response.send(shorkLinks);
             break;
         default:
             response.status(404).send();
